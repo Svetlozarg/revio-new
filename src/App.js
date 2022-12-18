@@ -10,11 +10,24 @@ import Register from './scenes/authentication/register';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { ColorModeContext, useMode } from './theme';
 import { useAuth } from './contexts/ContextProvider';
+import { useEffect } from 'react';
 
 function App() {
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
   const { user } = useAuth();
+
+  useEffect(() => {
+    if (!user) {
+      if (window.location.pathname !== '/login') {
+        window.location.href = '/login';
+      }
+    } else {
+      if (window.location.pathname === '/login') {
+        window.location.href = '/';
+      }
+    }
+  }, [user]);
 
   if (user) {
     return (

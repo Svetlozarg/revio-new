@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar';
-import { Box, IconButton, Typography, useTheme } from '@mui/material';
+import { Box, Button, IconButton, Typography, useTheme } from '@mui/material';
 import { Link } from 'react-router-dom';
 import 'react-pro-sidebar/dist/css/styles.css';
 import { tokens } from '../../theme';
@@ -12,6 +12,7 @@ import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstruct
 import DisplaySettingsIcon from '@mui/icons-material/DisplaySettings';
 import SettingsIcon from '@mui/icons-material/Settings';
 import logo from '../../assets/revio_logo.png';
+import logoLight from '../../assets/revio_logo-light.png';
 import { useAuth } from '../../contexts/ContextProvider';
 import { useLocation } from 'react-router-dom';
 
@@ -38,7 +39,7 @@ const Sidebar = () => {
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState('');
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const location = useLocation();
   const path = location.pathname;
   const urlAfterSlash = path.substring(1);
@@ -91,7 +92,7 @@ const Sidebar = () => {
               >
                 <Typography variant='h3' color={colors.grey[100]}>
                   <img
-                    src={logo}
+                    src={theme.palette.mode === 'dark' ? logoLight : logo}
                     loading='lazy'
                     alt='Revio Logo'
                     style={{ width: 'auto', height: '40px' }}
@@ -131,6 +132,19 @@ const Sidebar = () => {
                 <Typography variant='h5' color={colors.greenAccent[500]}>
                   {user.email}
                 </Typography>
+                <Button
+                  sx={{
+                    backgroundColor: colors.blueAccent[700],
+                    color: colors.grey[100],
+                    fontSize: '14px',
+                    fontWeight: 'bold',
+                    padding: '5px 20px',
+                    marginTop: '10px',
+                  }}
+                  onClick={() => logout()}
+                >
+                  Logout
+                </Button>
               </Box>
             </Box>
           )}
