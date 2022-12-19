@@ -32,7 +32,7 @@ const Login = () => {
 
   useEffect(() => {
     if (user) navigate('/');
-  }, []);
+  }, [user]);
 
   return (
     <Box

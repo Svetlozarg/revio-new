@@ -5,6 +5,7 @@ import Sidebar from './components/global/Sidebar';
 import Dashboard from './scenes/dashboard';
 import Settings from './scenes/settings';
 import Inbox from './scenes/inbox';
+import Automations from './scenes/automations';
 import Login from './scenes/authentication/login';
 import Register from './scenes/authentication/register';
 import { CssBaseline, ThemeProvider } from '@mui/material';
@@ -43,6 +44,9 @@ function App() {
               </Routes>
               <Routes>
                 <Route path='/inbox' element={<Inbox />} />
+              </Routes>
+              <Routes>
+                <Route path='/automations' element={<Automations />} />
               </Routes>
               <Routes>
                 <Route path='/settings' element={<Settings />} />

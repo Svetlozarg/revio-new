@@ -22,6 +22,7 @@ import DialogDrawer from '../../components/inbox/DialogDrawer';
 import ProductsModal from './Modal/ProductsModal';
 import CloseIcon from '@mui/icons-material/Close';
 import { useEffect } from 'react';
+import Alert from '../Alert';
 
 // TabPanel Component
 function TabPanel(props) {
@@ -60,12 +61,19 @@ const DialogTab = ({ value, user }) => {
   const { id, name, phone } = user;
   const message = useRef('');
   const [messages, setMessages] = useState([]);
+  const [alert, setAlert] = useState({ text: '', show: false });
   const [attachedProducts, setAttachedProducts] = useState([]);
   const scrollBottom = useRef();
 
   // Handle send message
   const handleSendMessage = () => {
-    if (message.current.value === '') return;
+    if (message.current.value === '' || message.current.value === ' ') {
+      setAlert({ text: 'error', show: true });
+      setTimeout(() => {
+        setAlert({ text: '', show: false });
+      }, 5000);
+      return;
+    }
 
     if (localStorage.getItem('msgArray')) {
       let msgArray = JSON.parse(localStorage.getItem('msgArray'));
@@ -89,6 +97,11 @@ const DialogTab = ({ value, user }) => {
       localStorage.setItem('msgArray', JSON.stringify(msgArray));
       setMessages(msgArray);
     }
+
+    setAlert({ text: 'success', show: true });
+    setTimeout(() => {
+      setAlert({ text: '', show: false });
+    }, 5000);
 
     message.current.value = '';
     setAttachedProducts([]);
@@ -117,7 +130,7 @@ const DialogTab = ({ value, user }) => {
 
   useEffect(() => {
     setMessages(JSON.parse(localStorage.getItem('msgArray')));
-  }, [setMessages, messages]);
+  }, [messages]);
 
   useEffect(() => {
     if (scrollBottom.current) {
@@ -220,6 +233,17 @@ const DialogTab = ({ value, user }) => {
               />
             );
           })}
+
+          {alert.show && (
+            <Alert
+              variant={alert.text}
+              text={
+                alert.text === 'success'
+                  ? 'Your message has been set!'
+                  : "You can't send empty messages!"
+              }
+            />
+          )}
         </Box>
 
         {/* Chat Bottom */}
