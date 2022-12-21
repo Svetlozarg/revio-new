@@ -211,8 +211,8 @@ const DialogTab = ({ value, user }) => {
             padding: '2rem',
             height:
               attachedProducts?.length === 0 && attachedProducts !== undefined
-                ? '66vh'
-                : '47.5vh',
+                ? '660px'
+                : '483px',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'flex-start',
@@ -271,7 +271,7 @@ const DialogTab = ({ value, user }) => {
         {/* Chat Bottom */}
         <Box
           sx={{
-            height: '400px',
+            height: 'auto',
             borderTop: '1px solid #000',
             borderColor: 'divider',
             p: 3,
@@ -324,10 +324,54 @@ const DialogTab = ({ value, user }) => {
           )}
 
           {/* Send Message */}
-          <FormControl variant='standard' sx={{ width: '100%' }}>
+          <FormControl
+            variant='standard'
+            sx={{
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+            }}
+          >
+            {/* Action Bar */}
+            <Box pt='5px' display='flex'>
+              {/* Products Modal */}
+              <ProductsModal
+                onHandleButtonClicked={handleOnHandleButtonClicked}
+              />
+              {/* Macros Modal */}
+              <IconButton>
+                <InsertCommentRoundedIcon sx={{ fontSize: '1.5rem' }} />
+              </IconButton>
+
+              {/* Emoji Button  */}
+              <IconButton onClick={() => setShowEmoji(!showEmoji)}>
+                <EmojiEmotionsIcon />
+              </IconButton>
+
+              {/* Emoji Tab */}
+              {showEmoji && (
+                <ClickAwayListener onClickAway={() => setShowEmoji(!showEmoji)}>
+                  <Box sx={{ position: 'absolute', bottom: '55px' }}>
+                    <Picker
+                      data={data}
+                      previewPosition='none'
+                      theme={theme.palette.mode === 'dark' ? 'dark' : 'light'}
+                      onEmojiSelect={(emoji) => {
+                        message.current.value += emoji.native;
+                        setShowEmoji(!showEmoji);
+                      }}
+                    />
+                  </Box>
+                </ClickAwayListener>
+              )}
+            </Box>
+
+            {/* Message Field */}
             <Input
               placeholder='Type your message...'
-              sx={{ fontSize: '1rem', p: '1rem' }}
+              sx={{ fontSize: '1rem', p: '1rem', width: '100%' }}
               inputRef={message}
               onKeyDown={handleOnButtonSendMessage}
               endAdornment={
@@ -339,40 +383,6 @@ const DialogTab = ({ value, user }) => {
               }
             />
           </FormControl>
-
-          {/* Action Bar */}
-          <Box pt='5px' display='flex'>
-            {/* Products Modal */}
-            <ProductsModal
-              onHandleButtonClicked={handleOnHandleButtonClicked}
-            />
-            {/* Macros Modal */}
-            <IconButton>
-              <InsertCommentRoundedIcon sx={{ fontSize: '1.5rem' }} />
-            </IconButton>
-
-            {/* Emoji Button  */}
-            <IconButton onClick={() => setShowEmoji(!showEmoji)}>
-              <EmojiEmotionsIcon />
-            </IconButton>
-
-            {/* Emoji Tab */}
-            {showEmoji && (
-              <ClickAwayListener onClickAway={() => setShowEmoji(!showEmoji)}>
-                <Box sx={{ position: 'absolute', top: '47vh' }}>
-                  <Picker
-                    data={data}
-                    previewPosition='none'
-                    theme={theme.palette.mode === 'dark' ? 'dark' : 'light'}
-                    onEmojiSelect={(emoji) => {
-                      message.current.value += emoji.native;
-                      setShowEmoji(!showEmoji);
-                    }}
-                  />
-                </Box>
-              </ClickAwayListener>
-            )}
-          </Box>
         </Box>
       </Box>
     </TabPanel>

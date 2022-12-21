@@ -108,7 +108,7 @@ export default function Drawer({ user }) {
     <div>
       <Box
         sx={{
-          height: '89%',
+          height: '856px',
           position: 'fixed',
           backgroundColor: colors.primary[400],
           right: '1%',

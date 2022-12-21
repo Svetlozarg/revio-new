@@ -25,7 +25,7 @@ export default function Inbox() {
         flexGrow: 1,
         bgcolor: 'background.paper',
         display: 'flex',
-        height: '89%',
+        height: '856px',
         borderRadius: '10px',
         border: '1px solid #000',
         borderColor: 'divider',
