@@ -26,7 +26,6 @@ import { useEffect } from 'react';
 import Alert from '../Alert';
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import Picker from '@emoji-mart/react';
-import data from '@emoji-mart/data';
 
 // TabPanel Component
 function TabPanel(props) {
@@ -69,6 +68,14 @@ const DialogTab = ({ value, user }) => {
   const [attachedProducts, setAttachedProducts] = useState([]);
   const scrollBottom = useRef();
   const [showEmoji, setShowEmoji] = useState(false);
+
+  const data = async () => {
+    const response = await fetch(
+      'https://cdn.jsdelivr.net/npm/@emoji-mart/data'
+    );
+
+    return response.json();
+  };
 
   // Handle send message
   const handleSendMessage = () => {
