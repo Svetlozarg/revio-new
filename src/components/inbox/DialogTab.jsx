@@ -10,6 +10,7 @@ import {
   ImageListItem,
   ImageListItemBar,
   Button,
+  ClickAwayListener,
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
@@ -23,6 +24,9 @@ import ProductsModal from './Modal/ProductsModal';
 import CloseIcon from '@mui/icons-material/Close';
 import { useEffect } from 'react';
 import Alert from '../Alert';
+import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
+import Picker from '@emoji-mart/react';
+import data from '@emoji-mart/data';
 
 // TabPanel Component
 function TabPanel(props) {
@@ -64,6 +68,7 @@ const DialogTab = ({ value, user }) => {
   const [alert, setAlert] = useState({ text: '', show: false });
   const [attachedProducts, setAttachedProducts] = useState([]);
   const scrollBottom = useRef();
+  const [showEmoji, setShowEmoji] = useState(false);
 
   // Handle send message
   const handleSendMessage = () => {
@@ -126,6 +131,10 @@ const DialogTab = ({ value, user }) => {
     );
 
     setAttachedProducts(updatedArray);
+  };
+
+  const handleEmojiSelect = (emoji) => {
+    console.log(emoji);
   };
 
   useEffect(() => {
@@ -328,6 +337,28 @@ const DialogTab = ({ value, user }) => {
             <IconButton>
               <InsertCommentRoundedIcon sx={{ fontSize: '1.5rem' }} />
             </IconButton>
+
+            {/* Emoji Button  */}
+            <IconButton onClick={() => setShowEmoji(!showEmoji)}>
+              <EmojiEmotionsIcon />
+            </IconButton>
+
+            {/* Emoji Tab */}
+            {showEmoji && (
+              <ClickAwayListener onClickAway={() => setShowEmoji(!showEmoji)}>
+                <Box sx={{ position: 'absolute', top: '47vh' }}>
+                  <Picker
+                    data={data}
+                    previewPosition='none'
+                    theme={theme.palette.mode === 'dark' ? 'dark' : 'light'}
+                    onEmojiSelect={(emoji) => {
+                      message.current.value += emoji.native;
+                      setShowEmoji(!showEmoji);
+                    }}
+                  />
+                </Box>
+              </ClickAwayListener>
+            )}
           </Box>
         </Box>
       </Box>

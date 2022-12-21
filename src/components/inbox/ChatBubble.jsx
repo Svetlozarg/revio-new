@@ -64,6 +64,7 @@ const ChatBubble = ({ variant, color, text, products, time = '8:21 pm' }) => {
           padding: '.5rem 4rem .5rem 1rem',
           borderRadius: '10px',
           position: 'relative',
+          color: color === 'green' ? '#fff' : '',
         }}
       >
         {/* Prodcuts */}
@@ -123,8 +124,14 @@ const ChatBubble = ({ variant, color, text, products, time = '8:21 pm' }) => {
           <Box
             sx={{
               position: 'absolute',
-              border: '8px solid #000',
-              borderColor: '#000 #000 transparent transparent',
+              border:
+                theme.palette.mode === 'dark'
+                  ? '8px solid #121212'
+                  : '8px solid #fff',
+              borderColor:
+                theme.palette.mode === 'dark'
+                  ? '#121212 #121212 transparent transparent'
+                  : '#fff #fff transparent transparent',
               left: '-8px',
               top: '0',
             }}
