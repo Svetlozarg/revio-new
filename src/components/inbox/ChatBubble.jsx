@@ -7,10 +7,8 @@ import {
   useTheme,
 } from '@mui/material';
 import { tokens } from '../../theme';
-import PersonIcon from '@mui/icons-material/Person';
-import avatar from '../../assets/small_logo.png';
 
-const ChatBubble = ({ variant, color, text, products, time = '8:21 pm' }) => {
+const ChatBubble = ({ variant, color, text, products, time = '20:21' }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -26,30 +24,6 @@ const ChatBubble = ({ variant, color, text, products, time = '8:21 pm' }) => {
         flexDirection: variant === 'end' ? 'row-reverse' : 'row',
       }}
     >
-      {/* Avatar */}
-      {/* <Box
-        sx={{
-          backgroundColor: 'background.paper',
-          borderRadius: '50%',
-          padding: '5px',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        {variant === 'end' ? (
-          <img
-            style={{ width: 'auto', height: '25px', objectFit: 'cover' }}
-            src={avatar}
-            alt=''
-          />
-        ) : (
-          <PersonIcon
-            sx={{ width: 'auto', height: '25px', objectFit: 'cover' }}
-          />
-        )}
-      </Box> */}
-
       {/* Message */}
       <Typography
         sx={{
@@ -61,13 +35,15 @@ const ChatBubble = ({ variant, color, text, products, time = '8:21 pm' }) => {
               : color === 'green' && theme.palette.mode === 'dark'
               ? '#046a62'
               : '#d9fdd3',
-          padding: '.5rem 4rem .5rem 1rem',
+          padding: '.5rem 3rem .5rem 1rem',
           borderRadius: '10px',
           position: 'relative',
         }}
       >
+        {text}
+
         {/* Prodcuts */}
-        {products && (
+        {products?.length > 0 && (
           <ImageList
             sx={{
               width: '100%',
@@ -94,8 +70,20 @@ const ChatBubble = ({ variant, color, text, products, time = '8:21 pm' }) => {
             ))}
           </ImageList>
         )}
-        {text}
 
+        {products?.length > 0 && (
+          <Typography>
+            {products.map((product, i) => {
+              if (i === products.length - 1) {
+                return product.title;
+              } else {
+                return product.title + ', ';
+              }
+            })}
+          </Typography>
+        )}
+
+        {/* Time */}
         <Box
           sx={{
             fontSize: '.9rem',
@@ -107,6 +95,7 @@ const ChatBubble = ({ variant, color, text, products, time = '8:21 pm' }) => {
           {time}
         </Box>
 
+        {/* Green Triangle */}
         {color === 'green' && (
           <Box
             sx={{
@@ -125,6 +114,7 @@ const ChatBubble = ({ variant, color, text, products, time = '8:21 pm' }) => {
           ></Box>
         )}
 
+        {/* White Triangle */}
         {color === 'white' && (
           <Box
             sx={{

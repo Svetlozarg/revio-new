@@ -80,7 +80,8 @@ const DialogTab = ({ value, user }) => {
 
   // Handle send message
   const handleSendMessage = () => {
-    if (message.current.value === '' || message.current.value === ' ') {
+    // Handle Empty Message
+    if (message.current.value === '' && attachedProducts.length < 0) {
       setAlert({ text: 'error', show: true });
       setTimeout(() => {
         setAlert({ text: '', show: false });
@@ -89,6 +90,7 @@ const DialogTab = ({ value, user }) => {
     }
 
     if (localStorage.getItem('msgArray')) {
+      // if there are messages sent
       let msgArray = JSON.parse(localStorage.getItem('msgArray'));
       let msgObj = {
         message: message.current.value,
@@ -100,6 +102,7 @@ const DialogTab = ({ value, user }) => {
 
       setMessages((prevMsgs) => [...prevMsgs, msgArray]);
     } else {
+      // if no messages are sent
       let msgArray = [
         {
           message: message.current.value,
@@ -120,7 +123,10 @@ const DialogTab = ({ value, user }) => {
       if (scrollBottom.current) {
         scrollBottom.current.scrollTop = scrollBottom.current.scrollHeight;
       }
-      message.current.value = '';
+
+      if (message.current.value !== '') {
+        message.current.value = '';
+      }
     }, 1);
     setAttachedProducts([]);
   };
@@ -247,14 +253,38 @@ const DialogTab = ({ value, user }) => {
           />
 
           {messages?.map((msg) => {
-            return (
-              <ChatBubble
-                variant='end'
-                color='green'
-                text={msg.message}
-                products={msg.products}
-              />
-            );
+            if (msg.products?.length === 0) {
+              return (
+                <ChatBubble
+                  variant='end'
+                  color='green'
+                  text={msg.message}
+                  products=''
+                />
+              );
+            } else {
+              return (
+                <Box sx={{ width: '100%' }}>
+                  {msg.message && (
+                    <ChatBubble
+                      variant='end'
+                      color='green'
+                      text={msg.message}
+                      products=''
+                    />
+                  )}
+
+                  {msg.products && (
+                    <ChatBubble
+                      variant='end'
+                      color='green'
+                      text=''
+                      products={msg.products}
+                    />
+                  )}
+                </Box>
+              );
+            }
           })}
 
           {alert.show && (
