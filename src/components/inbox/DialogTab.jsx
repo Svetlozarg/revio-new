@@ -129,6 +129,7 @@ const DialogTab = ({ value, user }) => {
       }
     }, 1);
     setAttachedProducts([]);
+    setMessages(JSON.parse(localStorage.getItem('msgArray')));
   };
 
   // Handle on enter pressed
@@ -152,13 +153,9 @@ const DialogTab = ({ value, user }) => {
     setAttachedProducts(updatedArray);
   };
 
-  const handleEmojiSelect = (emoji) => {
-    console.log(emoji);
-  };
-
   useEffect(() => {
     setMessages(JSON.parse(localStorage.getItem('msgArray')));
-  }, [messages]);
+  }, []);
 
   useEffect(() => {
     if (scrollBottom.current) {
@@ -252,10 +249,11 @@ const DialogTab = ({ value, user }) => {
             text='Yes, here are some limited time offers!'
           />
 
-          {messages?.map((msg) => {
+          {messages?.map((msg, i) => {
             if (msg.products?.length === 0) {
               return (
                 <ChatBubble
+                  key={i}
                   variant='end'
                   color='green'
                   text={msg.message}
@@ -267,6 +265,7 @@ const DialogTab = ({ value, user }) => {
                 <Box sx={{ width: '100%' }}>
                   {msg.message && (
                     <ChatBubble
+                      key={i}
                       variant='end'
                       color='green'
                       text={msg.message}
@@ -276,6 +275,7 @@ const DialogTab = ({ value, user }) => {
 
                   {msg.products && (
                     <ChatBubble
+                      key={i + 1}
                       variant='end'
                       color='green'
                       text=''

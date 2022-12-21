@@ -25,7 +25,7 @@ const ChatBubble = ({ variant, color, text, products, time = '20:21' }) => {
       }}
     >
       {/* Message */}
-      <Typography
+      <Box
         sx={{
           maxWidth: '28vw',
           fontSize: '1rem',
@@ -132,7 +132,7 @@ const ChatBubble = ({ variant, color, text, products, time = '20:21' }) => {
             }}
           ></Box>
         )}
-      </Typography>
+      </Box>
     </Box>
   );
 };
