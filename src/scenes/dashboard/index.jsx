@@ -12,25 +12,10 @@ import GeographyChart from '../../components/GeographyChart';
 import BarChart from '../../components/BarChart';
 import StatBox from '../../components/StatBox';
 import ProgressCircle from '../../components/ProgressCircle';
-import { useEffect } from 'react';
-import axios from 'axios';
 
 const Dashboard = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-
-  useEffect(() => {
-    axios
-      .post('https://revio-backend.vercel.app/shopify/products/all', {
-        shopName: 'innowave-dev',
-      })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
 
   return (
     <Box m='20px'>

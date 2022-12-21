@@ -9,16 +9,17 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import EmailIcon from '@mui/icons-material/Email';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import OrdersTab from '../../components/inbox/OrdersTab';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
 export default function Drawer({ user }) {
-  const { name, email, phone } = user;
+  const { name, email, phone, waPhone } = user;
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
   const drawerContent = () => (
     <Box
       sx={{
-        width: '250px',
+        width: '320px',
         padding: '0',
       }}
     >
@@ -80,6 +81,18 @@ export default function Drawer({ user }) {
           <LocalPhoneIcon />
           {phone}
         </Typography>
+        <Typography
+          sx={{
+            fontSize: '1rem',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '5px',
+          }}
+        >
+          <WhatsAppIcon />
+          {waPhone}
+        </Typography>
       </Box>
 
       <Divider sx={{ margin: '1rem 0' }} />
@@ -98,9 +111,9 @@ export default function Drawer({ user }) {
           height: '89%',
           position: 'fixed',
           backgroundColor: colors.primary[400],
-          right: 0,
-          bottom: '2%',
-          borderRadius: '10px 0 0 10px',
+          right: '1%',
+          bottom: '1.9%',
+          borderRadius: '10px',
           border: '1px solid #000',
           borderColor: 'divider',
         }}

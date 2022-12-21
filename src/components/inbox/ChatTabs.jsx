@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Avatar, Tab, Tabs, Typography } from '@mui/material';
 import { mockDataTeam } from '../../data/mockData';
 import { Box } from '@mui/system';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
 const ChatTabs = ({ handleChange }) => {
   const [value, setValue] = useState(0);
@@ -36,10 +37,24 @@ const ChatTabs = ({ handleChange }) => {
                   flexDirection: 'column',
                 }}
               >
-                <Typography textAlign='left' fontSize='1rem' fontWeight='600'>
+                <Typography
+                  textAlign='left'
+                  fontSize='1rem'
+                  textTransform='none'
+                >
                   {user.name}
                 </Typography>
-                <Typography textAlign='left'>{user.phone}</Typography>
+                <Typography
+                  textAlign='left'
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'flex-start',
+                    alignItems: 'flex-end',
+                    gap: '4px',
+                  }}
+                >
+                  <WhatsAppIcon /> {user.phone}
+                </Typography>
               </Box>
             }
             icon={<Avatar src='/broken-image.jpg' loading='lazy' />}

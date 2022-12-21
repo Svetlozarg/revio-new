@@ -1,3 +1,7 @@
+/*
+  Shopify reusable api calls 
+*/
+
 import axios from 'axios';
 
 // Reusable function to fetch data from Storefront API
@@ -13,6 +17,22 @@ export async function storeFrontRequest({ query, variables }) {
       variables: variables,
     },
   });
+
+  return data;
+}
+
+// Fetch all prodcuts from Shopify
+export async function getAllProducts(storeName = 'innowave-dev') {
+  const data = axios
+    .post('https://revio-backend.vercel.app/shopify/products/all', {
+      shopName: storeName,
+    })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      return console.log(error);
+    });
 
   return data;
 }

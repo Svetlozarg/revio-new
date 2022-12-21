@@ -21,7 +21,7 @@ export default function Inbox() {
     <Box
       m='20px'
       sx={{
-        width: 'calc(100% - 280px)',
+        width: 'calc(100% - 370px)',
         flexGrow: 1,
         bgcolor: 'background.paper',
         display: 'flex',

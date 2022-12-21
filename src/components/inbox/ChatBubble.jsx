@@ -10,7 +10,7 @@ import { tokens } from '../../theme';
 import PersonIcon from '@mui/icons-material/Person';
 import avatar from '../../assets/small_logo.png';
 
-const ChatBubble = ({ variant, color, text, products }) => {
+const ChatBubble = ({ variant, color, text, products, time = '8:21 pm' }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -27,7 +27,7 @@ const ChatBubble = ({ variant, color, text, products }) => {
       }}
     >
       {/* Avatar */}
-      <Box
+      {/* <Box
         sx={{
           backgroundColor: 'background.paper',
           borderRadius: '50%',
@@ -48,7 +48,7 @@ const ChatBubble = ({ variant, color, text, products }) => {
             sx={{ width: 'auto', height: '25px', objectFit: 'cover' }}
           />
         )}
-      </Box>
+      </Box> */}
 
       {/* Message */}
       <Typography
@@ -59,10 +59,11 @@ const ChatBubble = ({ variant, color, text, products }) => {
             color === 'white'
               ? 'background.paper'
               : color === 'green'
-              ? '#25D366'
+              ? '#046a62'
               : '',
-          padding: '.5rem 1rem',
+          padding: '.5rem 4rem .5rem 1rem',
           borderRadius: '10px',
+          position: 'relative',
         }}
       >
         {/* Prodcuts */}
@@ -93,8 +94,42 @@ const ChatBubble = ({ variant, color, text, products }) => {
             ))}
           </ImageList>
         )}
-
         {text}
+
+        <Box
+          sx={{
+            fontSize: '.9rem',
+            position: 'absolute',
+            right: '8px',
+            bottom: '7px',
+          }}
+        >
+          {time}
+        </Box>
+
+        {color === 'green' && (
+          <Box
+            sx={{
+              position: 'absolute',
+              border: '8px solid #046a62',
+              borderColor: '#046a62 transparent transparent #046a62',
+              right: '-8px',
+              top: '0',
+            }}
+          ></Box>
+        )}
+
+        {color === 'white' && (
+          <Box
+            sx={{
+              position: 'absolute',
+              border: '8px solid #000',
+              borderColor: '#000 #000 transparent transparent',
+              left: '-8px',
+              top: '0',
+            }}
+          ></Box>
+        )}
       </Typography>
     </Box>
   );

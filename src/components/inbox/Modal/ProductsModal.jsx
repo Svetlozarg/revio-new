@@ -11,6 +11,7 @@ import ProductCard from '../Cards/ProductCard';
 import { tokens } from '../../../theme';
 import CloseIcon from '@mui/icons-material/Close';
 import { storeFrontRequest } from '../../../utils/shopify';
+import { getAllProducts } from '../../../utils/shopify';
 
 export default function BasicModal({ onHandleButtonClicked }) {
   const theme = useTheme();
@@ -24,36 +25,7 @@ export default function BasicModal({ onHandleButtonClicked }) {
 
   // Fetch 9 Products On Load
   const fetchProducts = async () => {
-    // Fetch first 9 products
-    const products = await storeFrontRequest({
-      query: `{
-      products(first: 12) {
-        edges {
-          node {
-            id
-            title
-            handle
-            priceRange {
-              minVariantPrice {
-                amount
-              }
-            }
-            images(first: 1) {
-              edges {
-                node {
-                  transformedSrc
-                  altText
-                }
-              }
-            }
-          }
-        }
-      }
-    }`,
-      variables: {},
-    });
-
-    setProducts(products.data.products.edges);
+    setProducts(await getAllProducts());
   };
 
   // Search Products
@@ -231,16 +203,13 @@ export default function BasicModal({ onHandleButtonClicked }) {
               marginTop: '3rem',
             }}
           >
-            {products.map((item, i) => {
-              const product = item.node;
-              const image = product.images.edges[0].node;
-
+            {products?.map((item, i) => {
               return (
                 <ProductCard
                   key={i}
-                  image={image.transformedSrc}
-                  title={product.title}
-                  price={product.priceRange.minVariantPrice.amount}
+                  image={item.images[0].src}
+                  title={item.title}
+                  price={item.variants[0].price}
                   onProductSelected={handleProductSelected}
                 />
               );
