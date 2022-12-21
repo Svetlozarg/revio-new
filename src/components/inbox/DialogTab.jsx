@@ -69,6 +69,7 @@ const DialogTab = ({ value, user }) => {
   const scrollBottom = useRef();
   const [showEmoji, setShowEmoji] = useState(false);
 
+  // Fetch Emoji List
   const data = async () => {
     const response = await fetch(
       'https://cdn.jsdelivr.net/npm/@emoji-mart/data'
@@ -115,7 +116,12 @@ const DialogTab = ({ value, user }) => {
       setAlert({ text: '', show: false });
     }, 5000);
 
-    message.current.value = '';
+    setTimeout(() => {
+      if (scrollBottom.current) {
+        scrollBottom.current.scrollTop = scrollBottom.current.scrollHeight;
+      }
+      message.current.value = '';
+    }, 1);
     setAttachedProducts([]);
   };
 
@@ -152,7 +158,7 @@ const DialogTab = ({ value, user }) => {
     if (scrollBottom.current) {
       scrollBottom.current.scrollTop = scrollBottom.current.scrollHeight;
     }
-  }, [scrollBottom.current, messages]);
+  }, [scrollBottom.current]);
 
   return (
     <TabPanel value={value} index={id - 1}>
