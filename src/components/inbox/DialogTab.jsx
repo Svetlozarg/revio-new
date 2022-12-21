@@ -173,6 +173,7 @@ const DialogTab = ({ value, user }) => {
           alignItems: 'center',
           padding: '1rem',
           backgroundColor: colors.primary[400],
+          borderRadius: '10px',
         }}
       >
         <Box

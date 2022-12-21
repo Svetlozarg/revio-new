@@ -39,6 +39,8 @@ export default function Inbox() {
           height: '100%',
           borderRight: '1px solid #000',
           borderColor: 'divider',
+          backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#1f2a40',
+          borderRadius: '10px',
         }}
       >
         <Box

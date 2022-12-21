@@ -15,6 +15,7 @@ import logo from '../../assets/revio_logo.png';
 import logoLight from '../../assets/revio_logo-light.png';
 import { useAuth } from '../../contexts/ContextProvider';
 import { useLocation } from 'react-router-dom';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -108,17 +109,7 @@ const Sidebar = () => {
           {!isCollapsed && (
             <Box mb='25px'>
               <Box display='flex' justifyContent='center' alignItems='center'>
-                <img
-                  alt='profile-user'
-                  width='100px'
-                  height='100px'
-                  src={`../../assets/small_logo.png`}
-                  style={{
-                    cursor: 'pointer',
-                    borderRadius: '50%',
-                    objectFit: 'cover',
-                  }}
-                />
+                <AccountCircleIcon style={{ fontSize: '6rem' }} />
               </Box>
               <Box textAlign='center'>
                 <Typography

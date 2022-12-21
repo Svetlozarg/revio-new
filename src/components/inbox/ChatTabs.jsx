@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { Avatar, Tab, Tabs, Typography } from '@mui/material';
 import { mockDataTeam } from '../../data/mockData';
-import { Box } from '@mui/system';
+import { Box, useTheme } from '@mui/system';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import { tokens } from '../../theme';
 
 const ChatTabs = ({ handleChange }) => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
   const [value, setValue] = useState(0);
 
   const handleTabChange = (event, newValue) => {
@@ -62,14 +65,20 @@ const ChatTabs = ({ handleChange }) => {
             sx={{
               // borderBottom: 1,
               // borderColor: 'divider',
-              backgroundColor: value === i ? '#2a3942' : '',
+              backgroundColor:
+                value === i && theme.palette.mode === 'dark'
+                  ? '#2a3942'
+                  : value === i && theme.palette.mode === 'light'
+                  ? '#f0f2f5'
+                  : '',
               width: '85%',
               margin: '0 auto',
               justifyContent: 'start',
               minHeight: '55px',
-              fontSize: '1rem',
+              fontSize: '1.5rem',
               fontWeight: '600',
-              borderRadius: '10px',
+              borderRadius: value === i ? '10px' : '0px',
+              color: theme.palette.mode === 'dark' ? '#fff' : '#000',
             }}
           />
         );
