@@ -4,7 +4,7 @@ import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
-import { Typography, useTheme } from '@mui/material';
+import { Box, Typography, useTheme } from '@mui/material';
 import { tokens } from '../../theme';
 import OrderCard from '../inbox/Cards/OrderCard';
 import { useState } from 'react';
@@ -95,7 +95,26 @@ export default function Accordions() {
               aria-controls='panel1d-content'
               id='panel1d-header'
             >
-              <Typography>Order #{orders.length - i}</Typography>
+              <Box
+                sx={{
+                  width: '100%',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}
+              >
+                <Typography>
+                  Order #{orders.length - i} /{' '}
+                  {new Date(order.order.createdAt).getDay() < 10
+                    ? '0' + new Date(order.order.createdAt).getDay()
+                    : new Date(order.order.createdAt).getDay()}
+                  .{new Date(order.order.createdAt).getDate()}.
+                  {new Date(order.order.createdAt).getFullYear()}
+                </Typography>
+                <Typography>
+                  {order.order.total} {order.order.currency}
+                </Typography>
+              </Box>
             </AccordionSummary>
             <AccordionDetails sx={{ padding: '0' }}>
               <OrderCard order={order.order} />

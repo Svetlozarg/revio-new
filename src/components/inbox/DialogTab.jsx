@@ -81,12 +81,14 @@ const DialogTab = ({ value, user }) => {
   // Handle send message
   const handleSendMessage = () => {
     // Handle Empty Message
-    if (message.current.value === '' && attachedProducts.length < 0) {
-      setAlert({ text: 'error', show: true });
-      setTimeout(() => {
-        setAlert({ text: '', show: false });
-      }, 5000);
-      return;
+    if (message.current.value === '') {
+      if (attachedProducts.length <= 0) {
+        setAlert({ text: 'error', show: true });
+        setTimeout(() => {
+          setAlert({ text: '', show: false });
+        }, 5000);
+        return;
+      }
     }
 
     if (localStorage.getItem('msgArray')) {
@@ -323,7 +325,7 @@ const DialogTab = ({ value, user }) => {
               {attachedProducts.map((product) => (
                 <ImageListItem key={product.image}>
                   <img
-                    src={`${product.image}&width=150`}
+                    src={`${product.image}&width=450`}
                     alt={product.title}
                     loading='lazy'
                   />

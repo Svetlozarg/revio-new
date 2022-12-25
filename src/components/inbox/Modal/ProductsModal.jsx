@@ -1,17 +1,20 @@
 import * as React from 'react';
 import { useState, useEffect, useRef } from 'react';
-import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
-import { useTheme } from '@mui/material';
-import Modal from '@mui/material/Modal';
+import {
+  Box,
+  IconButton,
+  useTheme,
+  Modal,
+  InputAdornment,
+  TextField,
+  Button,
+} from '@mui/material';
 import AddShoppingCartRoundedIcon from '@mui/icons-material/AddShoppingCartRounded';
-import { InputAdornment, TextField, Button } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import ProductCard from '../Cards/ProductCard';
 import { tokens } from '../../../theme';
 import CloseIcon from '@mui/icons-material/Close';
-import { storeFrontRequest } from '../../../utils/shopify';
-import { getAllProducts } from '../../../utils/shopify';
+import { getAllProducts, searchProducts } from '../../../utils/shopify';
 
 export default function BasicModal({ onHandleButtonClicked }) {
   const theme = useTheme();
@@ -31,67 +34,7 @@ export default function BasicModal({ onHandleButtonClicked }) {
   // Search Products
   const handleSearch = async (e) => {
     e.preventDefault();
-
-    if (search.current.value === '') {
-      const products = await storeFrontRequest({
-        query: `{
-        products(first: 12) {
-          edges {
-            node {
-              id
-              title
-              handle
-              priceRange {
-                minVariantPrice {
-                  amount
-                }
-              }
-              images(first: 1) {
-                edges {
-                  node {
-                    transformedSrc
-                    altText
-                  }
-                }
-              }
-            }
-          }
-        }
-      }`,
-        variables: {},
-      });
-      setProducts(products.data.products.edges);
-    } else {
-      const products = await storeFrontRequest({
-        query: `{
-          products(first: 20, query: "title_contains_whole:${search.current.value}") {
-            edges {
-            node {
-              id
-              title
-              handle
-              priceRange {
-                minVariantPrice {
-                  amount
-                }
-              }
-              images(first: 1) {
-                edges {
-                  node {
-                    transformedSrc
-                    altText
-                  }
-                }
-              }
-            }
-          }
-          }
-        }`,
-        variables: {},
-      });
-
-      setProducts(products.data.products.edges);
-    }
+    setProducts(await searchProducts(search.current.value));
   };
 
   // Handle on Product Clicked
