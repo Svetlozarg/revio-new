@@ -11,6 +11,7 @@ import {
   ImageListItemBar,
   Button,
   ClickAwayListener,
+  Skeleton,
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
@@ -68,6 +69,7 @@ const DialogTab = ({ value, user }) => {
   const [attachedProducts, setAttachedProducts] = useState([]);
   const scrollBottom = useRef();
   const [showEmoji, setShowEmoji] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // Fetch Emoji List
   const data = async () => {
@@ -143,10 +145,16 @@ const DialogTab = ({ value, user }) => {
 
   // Handle on attached button clicked
   const handleOnHandleButtonClicked = (data) => {
-    setAttachedProducts(data);
+    setLoading(true);
     setTimeout(() => {
       message.current.focus();
     }, 100);
+
+    setAttachedProducts(data);
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
   };
 
   // Handle remove attached products
@@ -154,7 +162,6 @@ const DialogTab = ({ value, user }) => {
     const updatedArray = attachedProducts.filter(
       (attachedProduct) => attachedProduct.title !== product.title
     );
-
     setAttachedProducts(updatedArray);
   };
 
@@ -325,37 +332,84 @@ const DialogTab = ({ value, user }) => {
               rowHeight={140}
               orientation='horizontal'
             >
-              {attachedProducts.map((product) => (
-                <ImageListItem key={product.image}>
-                  <img
-                    src={`${product.image}&width=450`}
-                    alt={product.title}
-                    loading='lazy'
-                  />
-                  <ImageListItemBar
-                    title={product.title}
-                    subtitle={'$' + product.price}
-                  />
-                  <Button
-                    style={{
-                      minWidth: 'auto',
-                      position: 'absolute',
-                      right: '0',
-                      top: '0',
-                      padding: '0',
-                    }}
-                    onClick={() => handleRemoveAttachedProduct(product)}
-                  >
-                    <CloseIcon
-                      sx={{
-                        fontSize: '1.5rem',
-                        borderRadius: '10px',
-                        color: colors.grey[500],
-                      }}
-                    />
-                  </Button>
-                </ImageListItem>
-              ))}
+              {attachedProducts.map((product) => {
+                if (loading) {
+                  return (
+                    <Skeleton
+                      animation='wave'
+                      variant='rectangle'
+                      width={150}
+                      height={150}
+                      sx={{ borderRadius: '10px' }}
+                    >
+                      <ImageListItem key={product.image}>
+                        <img
+                          src={`${product.image}&width=450`}
+                          alt={product.title}
+                          loading='lazy'
+                        />
+                        <ImageListItemBar
+                          title={product.title}
+                          subtitle={'$' + product.price}
+                        />
+                        <Button
+                          style={{
+                            minWidth: 'auto',
+                            position: 'absolute',
+                            right: '0',
+                            top: '0',
+                            padding: '0',
+                          }}
+                          onClick={() => handleRemoveAttachedProduct(product)}
+                        >
+                          <CloseIcon
+                            sx={{
+                              fontSize: '1.5rem',
+                              borderRadius: '10px',
+                              color: colors.grey[500],
+                            }}
+                          />
+                        </Button>
+                      </ImageListItem>
+                    </Skeleton>
+                  );
+                } else {
+                  return (
+                    <ImageListItem
+                      key={product.image}
+                      sx={{ overflow: 'hidden' }}
+                    >
+                      <img
+                        src={`${product.image}&width=450`}
+                        alt={product.title}
+                        loading='lazy'
+                      />
+                      <ImageListItemBar
+                        title={product.title}
+                        subtitle={'$' + product.price}
+                      />
+                      <Button
+                        style={{
+                          minWidth: 'auto',
+                          position: 'absolute',
+                          right: '0',
+                          top: '0',
+                          padding: '0',
+                        }}
+                        onClick={() => handleRemoveAttachedProduct(product)}
+                      >
+                        <CloseIcon
+                          sx={{
+                            fontSize: '1.5rem',
+                            borderRadius: '10px',
+                            color: colors.grey[500],
+                          }}
+                        />
+                      </Button>
+                    </ImageListItem>
+                  );
+                }
+              })}
             </ImageList>
           )}
 
