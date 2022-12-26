@@ -144,6 +144,9 @@ const DialogTab = ({ value, user }) => {
   // Handle on attached button clicked
   const handleOnHandleButtonClicked = (data) => {
     setAttachedProducts(data);
+    setTimeout(() => {
+      message.current.focus();
+    }, 100);
   };
 
   // Handle remove attached products
@@ -374,7 +377,7 @@ const DialogTab = ({ value, user }) => {
                 onHandleButtonClicked={handleOnHandleButtonClicked}
               />
               {/* Macros Modal */}
-              <IconButton>
+              <IconButton disabled>
                 <InsertCommentRoundedIcon sx={{ fontSize: '1.5rem' }} />
               </IconButton>
 
@@ -394,6 +397,7 @@ const DialogTab = ({ value, user }) => {
                       onEmojiSelect={(emoji) => {
                         message.current.value += emoji.native;
                         setShowEmoji(!showEmoji);
+                        message.current.focus();
                       }}
                     />
                   </Box>
