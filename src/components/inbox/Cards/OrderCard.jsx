@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {
+  Button,
   ImageList,
   ImageListItem,
   ImageListItemBar,
@@ -15,7 +16,9 @@ import {
   ListItem,
   ListItemText,
 } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Box } from '@mui/system';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import EditIcon from '@mui/icons-material/Edit';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -131,7 +134,7 @@ export default function RecipeReviewCard({ order }) {
 
       {/* Card Action */}
       <CardActions disableSpacing>
-        <Typography>
+        <Typography sx={{ fontSize: '1rem' }}>
           {order.items.length} items / {order.total} {order.currency}
         </Typography>
         <ExpandMore
@@ -175,6 +178,33 @@ export default function RecipeReviewCard({ order }) {
           </ImageList>
         </CardContent>
       </Collapse>
+
+      <Box
+        sx={{
+          padding: '.5rem',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
+        <Button variant='text' color='secondary'>
+          <ContentCopyIcon />
+          <Typography
+            sx={{ fontSize: '1rem', textTransform: 'none', fontWeight: '600' }}
+          >
+            Duplicate
+          </Typography>
+        </Button>
+
+        <Button variant='text' color='secondary'>
+          <EditIcon />
+          <Typography
+            sx={{ fontSize: '1rem', textTransform: 'none', fontWeight: '600' }}
+          >
+            Edit
+          </Typography>
+        </Button>
+      </Box>
     </Card>
   );
 }

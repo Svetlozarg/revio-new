@@ -37,27 +37,38 @@ const ChatTabs = ({ handleChange }) => {
                 sx={{
                   width: '100%',
                   display: 'flex',
-                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
                 }}
               >
-                <Typography
-                  textAlign='left'
-                  fontSize='1rem'
-                  textTransform='none'
-                >
-                  {user.name}
-                </Typography>
-                <Typography
-                  textAlign='left'
+                <Box
                   sx={{
                     display: 'flex',
                     justifyContent: 'flex-start',
-                    alignItems: 'flex-end',
-                    gap: '4px',
+                    alignItems: 'flex-start',
+                    flexDirection: 'column',
                   }}
                 >
-                  <WhatsAppIcon /> {user.phone}
-                </Typography>
+                  <Typography
+                    textAlign='left'
+                    fontSize='1rem'
+                    textTransform='none'
+                  >
+                    {user.name}
+                  </Typography>
+                  <Typography
+                    textAlign='left'
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'flex-start',
+                      alignItems: 'flex-end',
+                      gap: '4px',
+                    }}
+                  >
+                    {user.phone}
+                  </Typography>
+                </Box>
+                <WhatsAppIcon sx={{ fontSize: '2rem' }} />
               </Box>
             }
             icon={<Avatar src='/broken-image.jpg' loading='lazy' />}

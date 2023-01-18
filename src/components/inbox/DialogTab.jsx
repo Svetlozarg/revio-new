@@ -12,6 +12,8 @@ import {
   Button,
   ClickAwayListener,
   Skeleton,
+  MenuItem,
+  Select,
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
@@ -27,6 +29,7 @@ import { useEffect } from 'react';
 import Alert from '../Alert';
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import Picker from '@emoji-mart/react';
+import AttachFileIcon from '@mui/icons-material/AttachFile';
 
 // TabPanel Component
 function TabPanel(props) {
@@ -70,6 +73,11 @@ const DialogTab = ({ value, user }) => {
   const scrollBottom = useRef();
   const [showEmoji, setShowEmoji] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [ticket, setTicket] = useState('unassigned');
+
+  const handleChange = (event) => {
+    setTicket(event.target.value);
+  };
 
   // Fetch Emoji List
   const data = async () => {
@@ -195,7 +203,7 @@ const DialogTab = ({ value, user }) => {
           display='flex'
           justifyContent='center'
           alignItems='center'
-          gap='1rem'
+          gap='.5rem'
         >
           <WhatsAppIcon sx={{ fontSize: '2.5rem' }} />
           <Box>
@@ -203,10 +211,46 @@ const DialogTab = ({ value, user }) => {
             <Typography variant='h5'>{phone}</Typography>
           </Box>
         </Box>
-        <Box>
-          <DialogDrawer user={user} />
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            alignItems: 'center',
+            gap: '.5rem',
+          }}
+        >
+          <Box sx={{ minWidth: 120 }}>
+            <FormControl sx={{ m: 1, minWidth: 120 }} size='small'>
+              <Select
+                labelId='demo-select-small'
+                id='demo-select-small'
+                value={ticket}
+                onChange={handleChange}
+              >
+                <MenuItem value='unassigned'>Unassigned</MenuItem>
+                <MenuItem value='assigned'>Assigned</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
+
+          <Button
+            sx={{
+              backgroundColor: colors.blueAccent[700],
+              color: colors.grey[100],
+              fontSize: '14px',
+              fontWeight: 'bold',
+              padding: '5px 20px',
+              borderRadius: '10px',
+              textTransform: 'none',
+            }}
+          >
+            Close
+          </Button>
         </Box>
       </Box>
+
+      {/* Chat SideMenu */}
+      <DialogDrawer user={user} />
 
       {/* ChatFlow */}
       <Box
@@ -433,6 +477,11 @@ const DialogTab = ({ value, user }) => {
               {/* Macros Modal */}
               <IconButton disabled>
                 <InsertCommentRoundedIcon sx={{ fontSize: '1.5rem' }} />
+              </IconButton>
+
+              {/* Files Button  */}
+              <IconButton>
+                <AttachFileIcon />
               </IconButton>
 
               {/* Emoji Button  */}

@@ -47,3 +47,15 @@ body,
 .dialog-box-light {
   background-image: url("./assets/WA-light.JPG") !important;
 }
+
+.pro-menu {
+  padding: 0 !important;
+}
+
+.pro-menu ul {
+  height: 100vh !important;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center; */
+}
