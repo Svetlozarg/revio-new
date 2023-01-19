@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Topbar from './components/global/Topbar';
 import Sidebar from './components/global/Sidebar';
 import Dashboard from './scenes/dashboard';
+import Contacts from './scenes/contacts';
 import Settings from './scenes/settings';
 import Inbox from './scenes/inbox';
 import Login from './scenes/authentication/login';
@@ -11,6 +12,7 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import { ColorModeContext, useMode } from './theme';
 import { useAuth } from './contexts/ContextProvider';
 import { useEffect } from 'react';
+import Reviews from './scenes/reviews';
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -43,6 +45,12 @@ function App() {
               </Routes>
               <Routes>
                 <Route path='/inbox' element={<Inbox />} />
+              </Routes>
+              <Routes>
+                <Route path='/contacts' element={<Contacts />} />
+              </Routes>
+              <Routes>
+                <Route path='/reviews' element={<Reviews />} />
               </Routes>
               <Routes>
                 <Route path='/settings' element={<Settings />} />
