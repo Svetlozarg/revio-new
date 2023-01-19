@@ -150,6 +150,7 @@ export default function Inbox() {
                           fontSize: '1rem',
                           color:
                             theme.palette.mode === 'dark' ? '#fff' : '#000',
+                          textTransform: 'none',
                         }}
                       >
                         Unassigned
@@ -204,6 +205,7 @@ export default function Inbox() {
                           fontSize: '1rem',
                           color:
                             theme.palette.mode === 'dark' ? '#fff' : '#000',
+                          textTransform: 'none',
                         }}
                       >
                         My chats
@@ -258,6 +260,7 @@ export default function Inbox() {
                           fontSize: '1rem',
                           color:
                             theme.palette.mode === 'dark' ? '#fff' : '#000',
+                          textTransform: 'none',
                         }}
                       >
                         Team
@@ -325,6 +328,7 @@ export default function Inbox() {
                           fontSize: '1rem',
                           color:
                             theme.palette.mode === 'dark' ? '#fff' : '#000',
+                          textTransform: 'none',
                         }}
                       >
                         WhatsApp
@@ -379,6 +383,7 @@ export default function Inbox() {
                           fontSize: '1rem',
                           color:
                             theme.palette.mode === 'dark' ? '#fff' : '#000',
+                          textTransform: 'none',
                         }}
                       >
                         Messenger
@@ -433,6 +438,7 @@ export default function Inbox() {
                           fontSize: '1rem',
                           color:
                             theme.palette.mode === 'dark' ? '#fff' : '#000',
+                          textTransform: 'none',
                         }}
                       >
                         Instagram
@@ -487,6 +493,7 @@ export default function Inbox() {
                           fontSize: '1rem',
                           color:
                             theme.palette.mode === 'dark' ? '#fff' : '#000',
+                          textTransform: 'none',
                         }}
                       >
                         Viber
@@ -541,6 +548,7 @@ export default function Inbox() {
                           fontSize: '1rem',
                           color:
                             theme.palette.mode === 'dark' ? '#fff' : '#000',
+                          textTransform: 'none',
                         }}
                       >
                         Telegram
