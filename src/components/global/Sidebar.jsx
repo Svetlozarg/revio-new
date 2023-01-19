@@ -4,18 +4,19 @@ import { Box, Button, IconButton, Typography, useTheme } from '@mui/material';
 import { Link } from 'react-router-dom';
 import 'react-pro-sidebar/dist/css/styles.css';
 import { tokens } from '../../theme';
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import HomeIcon from '@mui/icons-material/Home';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import EmailIcon from '@mui/icons-material/Email';
-import PodcastsIcon from '@mui/icons-material/Podcasts';
-import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstructions';
-import DisplaySettingsIcon from '@mui/icons-material/DisplaySettings';
 import SettingsIcon from '@mui/icons-material/Settings';
 import logo from '../../assets/revio_logo.png';
 import logoLight from '../../assets/revio_logo-light.png';
 import { useAuth } from '../../contexts/ContextProvider';
 import { useLocation } from 'react-router-dom';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import SendIcon from '@mui/icons-material/Send';
+import PersonIcon from '@mui/icons-material/Person';
+import SmartToyIcon from '@mui/icons-material/SmartToy';
+import StarIcon from '@mui/icons-material/Star';
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -73,14 +74,15 @@ const Sidebar = () => {
         },
       }}
     >
+      {/* Sidebar */}
       <ProSidebar collapsed={isCollapsed}>
+        {/* Menu */}
         <Menu iconShape='square'>
           {/* LOGO AND MENU ICON */}
           <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)}
             icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
             style={{
-              margin: '10px 0 20px 0',
               color: colors.grey[100],
             }}
           >
@@ -106,6 +108,7 @@ const Sidebar = () => {
             )}
           </MenuItem>
 
+          {/* User Box */}
           {!isCollapsed && (
             <Box mb='25px'>
               <Box display='flex' justifyContent='center' alignItems='center'>
@@ -140,11 +143,12 @@ const Sidebar = () => {
             </Box>
           )}
 
+          {/* Menu Items */}
           <Box paddingLeft={isCollapsed ? undefined : '10%'}>
             <Item
               title='Dashboard'
               to='/'
-              icon={<HomeOutlinedIcon />}
+              icon={<HomeIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -158,21 +162,28 @@ const Sidebar = () => {
             <Item
               title='Broadcast'
               to='/broadcast'
-              icon={<PodcastsIcon />}
+              icon={<SendIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title='Integration'
-              to='/integration'
-              icon={<IntegrationInstructionsIcon />}
+              title='Contacts'
+              to='/contacts'
+              icon={<PersonIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title='Automations'
               to='/automations'
-              icon={<DisplaySettingsIcon />}
+              icon={<SmartToyIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title='Reviews'
+              to='/reviews'
+              icon={<StarIcon />}
               selected={selected}
               setSelected={setSelected}
             />

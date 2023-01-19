@@ -10,8 +10,14 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { Container } from '@mui/system';
+import InboxIcon from '@mui/icons-material/Inbox';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import PersonPinIcon from '@mui/icons-material/PersonPin';
+import GroupIcon from '@mui/icons-material/Group';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import TelegramIcon from '@mui/icons-material/Telegram';
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
+import MenuIcon from '@mui/icons-material/Menu';
 
 export default function Inbox() {
   const theme = useTheme();
@@ -57,236 +63,249 @@ export default function Inbox() {
         }}
       >
         {/* Conversation */}
-        <Typography sx={{ fontSize: '1.3rem', padding: '1rem 0' }}>
-          Conversations
-        </Typography>
-        {/* Conversations Tabs */}
-        <Tabs
-          value={chatCategorie}
-          onChange={handlechatCategorie}
-          orientation='vertical'
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
         >
-          <Tab
-            value={1}
-            label={
-              <Box
-                sx={{
-                  width: '100%',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    gap: '.5rem',
-                  }}
-                >
-                  <FavoriteIcon />
-                  <Typography sx={{ fontSize: '1rem' }}>Unassigned</Typography>
-                </Box>
-                <Typography sx={{ fontSize: '1rem' }}>(0)</Typography>
-              </Box>
-            }
-          />
-          <Tab
-            value={2}
-            label={
-              <Box
-                sx={{
-                  width: '100%',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    gap: '.5rem',
-                  }}
-                >
-                  <FavoriteIcon />
-                  <Typography sx={{ fontSize: '1rem' }}>My chats</Typography>
-                </Box>
-                <Typography sx={{ fontSize: '1rem' }}>(9)</Typography>
-              </Box>
-            }
-          />
-          <Tab
-            value={3}
-            label={
-              <Box
-                sx={{
-                  width: '100%',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    gap: '.5rem',
-                  }}
-                >
-                  <FavoriteIcon />
-                  <Typography sx={{ fontSize: '1rem' }}>Team</Typography>
-                </Box>
-                <Typography sx={{ fontSize: '1rem' }}>(18)</Typography>
-              </Box>
-            }
-          />
-        </Tabs>
+          {/* Conversations Tabs */}
+          <Typography sx={{ fontSize: '1.3rem', padding: '1rem 0' }}>
+            Conversations
+          </Typography>
+        </Box>
 
-        {/* Channels */}
-        <Typography sx={{ fontSize: '1.3rem', padding: '1rem 0' }}>
-          Channels
-        </Typography>
-        {/* Channel Tabs */}
-        <Tabs
-          value={chatCategorie}
-          onChange={handlechatCategorie}
-          orientation='vertical'
-        >
-          <Tab
-            value={4}
-            label={
-              <Box
-                sx={{
-                  width: '100%',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
+        <Box>
+          <Tabs
+            value={chatCategorie}
+            onChange={handlechatCategorie}
+            orientation='vertical'
+          >
+            <Tab
+              value={1}
+              label={
                 <Box
                   sx={{
+                    width: '100%',
                     display: 'flex',
-                    justifyContent: 'center',
+                    justifyContent: 'space-between',
                     alignItems: 'center',
-                    gap: '.5rem',
                   }}
                 >
-                  <FavoriteIcon />
-                  <Typography sx={{ fontSize: '1rem' }}>WhatsApp</Typography>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      gap: '.5rem',
+                    }}
+                  >
+                    <InboxIcon />
+                    <Typography sx={{ fontSize: '1rem' }}>
+                      Unassigned
+                    </Typography>
+                  </Box>
+                  <Typography sx={{ fontSize: '1rem' }}>(0)</Typography>
                 </Box>
-                <Typography sx={{ fontSize: '1rem' }}>(9)</Typography>
-              </Box>
-            }
-          />
-          <Tab
-            value={5}
-            label={
-              <Box
-                sx={{
-                  width: '100%',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
+              }
+            />
+            <Tab
+              value={2}
+              label={
                 <Box
                   sx={{
+                    width: '100%',
                     display: 'flex',
-                    justifyContent: 'center',
+                    justifyContent: 'space-between',
                     alignItems: 'center',
-                    gap: '.5rem',
                   }}
                 >
-                  <FavoriteIcon />
-                  <Typography sx={{ fontSize: '1rem' }}>Messanger</Typography>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      gap: '.5rem',
+                    }}
+                  >
+                    <QuestionAnswerIcon />
+                    <Typography sx={{ fontSize: '1rem' }}>My chats</Typography>
+                  </Box>
+                  <Typography sx={{ fontSize: '1rem' }}>(9)</Typography>
                 </Box>
-                <Typography sx={{ fontSize: '1rem' }}>(5)</Typography>
-              </Box>
-            }
-          />
-          <Tab
-            value={6}
-            label={
-              <Box
-                sx={{
-                  width: '100%',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
+              }
+            />
+            <Tab
+              value={3}
+              label={
                 <Box
                   sx={{
+                    width: '100%',
                     display: 'flex',
-                    justifyContent: 'center',
+                    justifyContent: 'space-between',
                     alignItems: 'center',
-                    gap: '.5rem',
                   }}
                 >
-                  <FavoriteIcon />
-                  <Typography sx={{ fontSize: '1rem' }}>Instagram</Typography>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      gap: '.5rem',
+                    }}
+                  >
+                    <GroupIcon />
+                    <Typography sx={{ fontSize: '1rem' }}>Team</Typography>
+                  </Box>
+                  <Typography sx={{ fontSize: '1rem' }}>(18)</Typography>
                 </Box>
-                <Typography sx={{ fontSize: '1rem' }}>(2)</Typography>
-              </Box>
-            }
-          />
-          <Tab
-            value={7}
-            label={
-              <Box
-                sx={{
-                  width: '100%',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
+              }
+            />
+          </Tabs>
+
+          {/* Channels */}
+          <Typography sx={{ fontSize: '1.3rem', padding: '1rem 0' }}>
+            Channels
+          </Typography>
+          {/* Channel Tabs */}
+          <Tabs
+            value={chatCategorie}
+            onChange={handlechatCategorie}
+            orientation='vertical'
+          >
+            <Tab
+              value={4}
+              label={
                 <Box
                   sx={{
+                    width: '100%',
                     display: 'flex',
-                    justifyContent: 'center',
+                    justifyContent: 'space-between',
                     alignItems: 'center',
-                    gap: '.5rem',
                   }}
                 >
-                  <FavoriteIcon />
-                  <Typography sx={{ fontSize: '1rem' }}>Viber</Typography>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      gap: '.5rem',
+                    }}
+                  >
+                    <WhatsAppIcon />
+                    <Typography sx={{ fontSize: '1rem' }}>WhatsApp</Typography>
+                  </Box>
+                  <Typography sx={{ fontSize: '1rem' }}>(9)</Typography>
                 </Box>
-                <Typography sx={{ fontSize: '1rem' }}>(8)</Typography>
-              </Box>
-            }
-          />
-          <Tab
-            value={8}
-            label={
-              <Box
-                sx={{
-                  width: '100%',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
+              }
+            />
+            <Tab
+              value={5}
+              label={
                 <Box
                   sx={{
+                    width: '100%',
                     display: 'flex',
-                    justifyContent: 'center',
+                    justifyContent: 'space-between',
                     alignItems: 'center',
-                    gap: '.5rem',
                   }}
                 >
-                  <FavoriteIcon />
-                  <Typography sx={{ fontSize: '1rem' }}>Telegram</Typography>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      gap: '.5rem',
+                    }}
+                  >
+                    <FavoriteIcon />
+                    <Typography sx={{ fontSize: '1rem' }}>Messenger</Typography>
+                  </Box>
+                  <Typography sx={{ fontSize: '1rem' }}>(5)</Typography>
                 </Box>
-                <Typography sx={{ fontSize: '1rem' }}>(6)</Typography>
-              </Box>
-            }
-          />
-        </Tabs>
+              }
+            />
+            <Tab
+              value={6}
+              label={
+                <Box
+                  sx={{
+                    width: '100%',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      gap: '.5rem',
+                    }}
+                  >
+                    <InstagramIcon />
+                    <Typography sx={{ fontSize: '1rem' }}>Instagram</Typography>
+                  </Box>
+                  <Typography sx={{ fontSize: '1rem' }}>(2)</Typography>
+                </Box>
+              }
+            />
+            <Tab
+              value={7}
+              label={
+                <Box
+                  sx={{
+                    width: '100%',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      gap: '.5rem',
+                    }}
+                  >
+                    <FavoriteIcon />
+                    <Typography sx={{ fontSize: '1rem' }}>Viber</Typography>
+                  </Box>
+                  <Typography sx={{ fontSize: '1rem' }}>(8)</Typography>
+                </Box>
+              }
+            />
+            <Tab
+              value={8}
+              label={
+                <Box
+                  sx={{
+                    width: '100%',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      gap: '.5rem',
+                    }}
+                  >
+                    <TelegramIcon />
+                    <Typography sx={{ fontSize: '1rem' }}>Telegram</Typography>
+                  </Box>
+                  <Typography sx={{ fontSize: '1rem' }}>(6)</Typography>
+                </Box>
+              }
+            />
+          </Tabs>
+        </Box>
       </Container>
 
       {/* Chat Tabs */}
