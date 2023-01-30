@@ -441,164 +441,140 @@ export const mockPieData = [
 
 export const mockLineData = [
   {
-    id: 'japan',
+    id: 'Messages Send',
     color: tokens('dark').greenAccent[500],
     data: [
       {
-        x: 'plane',
-        y: 101,
+        x: '1',
+        y: 500,
       },
       {
-        x: 'helicopter',
-        y: 75,
+        x: '5',
+        y: 420,
       },
       {
-        x: 'boat',
-        y: 36,
+        x: '10',
+        y: 430,
       },
       {
-        x: 'train',
-        y: 216,
+        x: '15',
+        y: 440,
       },
       {
-        x: 'subway',
-        y: 35,
+        x: '20',
+        y: 350,
       },
       {
-        x: 'bus',
-        y: 236,
+        x: '25',
+        y: 550,
       },
       {
-        x: 'car',
-        y: 88,
+        x: '30',
+        y: 340,
       },
       {
-        x: 'moto',
-        y: 232,
+        x: '35',
+        y: 560,
       },
       {
-        x: 'bicycle',
-        y: 281,
+        x: '40',
+        y: 450,
       },
       {
-        x: 'horse',
-        y: 1,
-      },
-      {
-        x: 'skateboard',
-        y: 35,
-      },
-      {
-        x: 'others',
-        y: 14,
+        x: '50',
+        y: 500,
       },
     ],
   },
   {
-    id: 'france',
+    id: 'Conversations',
     color: tokens('dark').blueAccent[300],
     data: [
       {
-        x: 'plane',
-        y: 212,
+        x: '1',
+        y: 600,
       },
       {
-        x: 'helicopter',
-        y: 190,
+        x: '5',
+        y: 220,
       },
       {
-        x: 'boat',
-        y: 270,
+        x: '10',
+        y: 130,
       },
       {
-        x: 'train',
-        y: 9,
+        x: '15',
+        y: 140,
       },
       {
-        x: 'subway',
-        y: 75,
+        x: '20',
+        y: 350,
       },
       {
-        x: 'bus',
-        y: 175,
+        x: '25',
+        y: 450,
       },
       {
-        x: 'car',
-        y: 33,
+        x: '30',
+        y: 540,
       },
       {
-        x: 'moto',
-        y: 189,
+        x: '35',
+        y: 560,
       },
       {
-        x: 'bicycle',
-        y: 97,
+        x: '40',
+        y: 650,
       },
       {
-        x: 'horse',
-        y: 87,
-      },
-      {
-        x: 'skateboard',
-        y: 299,
-      },
-      {
-        x: 'others',
-        y: 251,
+        x: '50',
+        y: 700,
       },
     ],
   },
   {
-    id: 'us',
+    id: 'Purchases',
     color: tokens('dark').redAccent[200],
     data: [
       {
-        x: 'plane',
-        y: 191,
+        x: '1',
+        y: 300,
       },
       {
-        x: 'helicopter',
-        y: 136,
+        x: '5',
+        y: 520,
       },
       {
-        x: 'boat',
-        y: 91,
+        x: '10',
+        y: 630,
       },
       {
-        x: 'train',
-        y: 190,
+        x: '15',
+        y: 140,
       },
       {
-        x: 'subway',
-        y: 211,
+        x: '20',
+        y: 250,
       },
       {
-        x: 'bus',
-        y: 152,
+        x: '25',
+        y: 550,
       },
       {
-        x: 'car',
-        y: 189,
+        x: '30',
+        y: 640,
       },
       {
-        x: 'moto',
-        y: 152,
+        x: '35',
+        y: 760,
       },
       {
-        x: 'bicycle',
-        y: 8,
+        x: '40',
+        y: 150,
       },
       {
-        x: 'horse',
-        y: 197,
-      },
-      {
-        x: 'skateboard',
-        y: 107,
-      },
-      {
-        x: 'others',
-        y: 170,
+        x: '50',
+        y: 500,
       },
     ],
   },

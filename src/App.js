@@ -1,18 +1,17 @@
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Topbar from './components/global/Topbar';
 import Sidebar from './components/global/Sidebar';
-import Dashboard from './scenes/dashboard';
-import Contacts from './scenes/contacts';
-import Settings from './scenes/settings';
-import Inbox from './scenes/inbox';
-import Login from './scenes/authentication/login';
-import Register from './scenes/authentication/register';
+import Dashboard from './pages/dashboard';
+import Contacts from './pages/contacts';
+import Settings from './pages/settings';
+import Inbox from './pages/inbox';
+import Login from './pages/authentication/login';
+import Register from './pages/authentication/register';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { ColorModeContext, useMode } from './theme';
 import { useAuth } from './contexts/ContextProvider';
 import { useEffect } from 'react';
-import Reviews from './scenes/reviews';
+import Reviews from './pages/reviews';
 
 function App() {
   const [theme, colorMode] = useMode();
